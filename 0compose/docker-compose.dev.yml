@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+    helloworld:
+        image: ubuntu:14.04
+        command: /bin/echo 'Hello world'
+
+networks:
+  back-tier:
+  front-tier:
+# volumes:
+  # db-data:
