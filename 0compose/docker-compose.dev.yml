@@ -5,6 +5,8 @@ services:
     image: mongo:3.2
     networks:
       - back-tier
+    volumes:
+      - ./data:/data/db
 
   server:
     build:
@@ -25,6 +27,6 @@ services:
 
 networks:
   back-tier:
-  front-tier:
+  # front-tier:
 # volumes:
   # db-data:
