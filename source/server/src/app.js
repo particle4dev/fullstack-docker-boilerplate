@@ -1,3 +1,4 @@
+import express from 'express';
 import config from './config';
 import { mongo } from './connect';
 
@@ -7,15 +8,13 @@ config();
 // mongo
 mongo();
 
-const express = require('express');
-
 // Constants
 const PORT = 4000;
 
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Hello world 231\n');
+  res.send('Hello world 23\n');
 });
 
 app.listen(PORT);

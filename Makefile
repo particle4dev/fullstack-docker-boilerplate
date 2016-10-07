@@ -20,3 +20,6 @@ clean:
 
 logs:
 	docker-compose -f ./0compose/docker-compose.dev.yml logs -f
+
+exec-server:
+	./0compose/docker-compose-exec.sh server bash
