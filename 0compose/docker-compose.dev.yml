@@ -6,12 +6,21 @@ services:
     networks:
       - back-tier
     volumes:
-      - ./data:/data/db
+      - ./data/mongo:/data/db
+
+  redis:
+    image: redis:3.2.0
+    networks:
+      - back-tier
+    volumes:
+      - ./data/redis:/data
 
   server:
     build:
       context: ../source/server
       dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
     volumes:
       - ../source/server/src:/usr/src/app/src
       - ../source/server/logs:/usr/src/app/logs

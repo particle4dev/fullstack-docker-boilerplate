@@ -1,12 +1,15 @@
 import express from 'express';
 import config from './config';
-import { mongo } from './connect';
+import { mongo, redis } from './connect';
 
 // configurations
 config();
 
 // mongo
 mongo();
+
+// redis
+redis();
 
 // Constants
 const PORT = 4000;
