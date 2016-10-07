@@ -9,4 +9,14 @@ build:
 	docker build --tag=${DOCKER_IMAGE}:${VERSION} .
 
 dev:
-	docker-compose up -d -f ./0compose/docker-compose.dev.yml
+	docker-compose -f ./0compose/docker-compose.dev.yml up -d
+
+dev-build:
+	docker-compose -f ./0compose/docker-compose.dev.yml up -d --build
+
+clean:
+	docker-compose -f ./0compose/docker-compose.dev.yml stop
+	docker-compose -f ./0compose/docker-compose.dev.yml rm -f
+
+logs:
+	docker-compose -f ./0compose/docker-compose.dev.yml logs -f
