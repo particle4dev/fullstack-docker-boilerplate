@@ -1,0 +1,11 @@
+{
+  "http": {
+    "port": 4000
+  },
+  "db": {
+    "mongo": {
+      "uri": "mongodb://mongo/tests",
+      "options": {}
+    }
+  }
+}

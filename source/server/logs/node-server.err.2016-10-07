@@ -1,0 +1,1 @@
+{"level":"error","message":"Failed to connect to DB mongodb://localhost/media_cityme on startup failed to connect to server [localhost:27017] on first connect","timestamp":"2016-10-07T14:17:16.898Z"}

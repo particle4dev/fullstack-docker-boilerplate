@@ -12,6 +12,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../source/server/src:/usr/src/app/src
+      - ../source/server/logs:/usr/src/app/logs
+      - ../source/server/config:/usr/src/app/config
     ports:
       - 4000:4000
     networks:

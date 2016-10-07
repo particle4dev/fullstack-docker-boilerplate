@@ -1,0 +1,4 @@
+{"level":"warn","message":"Mongoose default connection to DB : mongodb://localhost/media_cityme disconnected","timestamp":"2016-10-07T14:17:16.890Z"}
+{"level":"error","message":"Failed to connect to DB mongodb://localhost/media_cityme on startup failed to connect to server [localhost:27017] on first connect","timestamp":"2016-10-07T14:17:16.897Z"}
+{"level":"info","message":"Mongoose default connection open to mongodb://mongo/media_cityme","timestamp":"2016-10-07T14:17:49.513Z"}
+{"level":"info","message":"Mongoose default connection open to mongodb://mongo/tests","timestamp":"2016-10-07T14:18:00.437Z"}

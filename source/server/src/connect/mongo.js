@@ -44,9 +44,6 @@ export function connect(uri, options, cb) {
 }
 
 // Mongo
-import {
-  ImagesModel,
-} from '../models';
 let primaryData = null;
 export function connectPrimaryData(uri, options) {
   if (!primaryData) {
@@ -54,7 +51,6 @@ export function connectPrimaryData(uri, options) {
     uri = db ? db.uri : uri;
     options = db ? db.options : options;
     primaryData = connect(uri, options, () => {});
-    ImagesModel(primaryData);
   }
   return primaryData;
 }
