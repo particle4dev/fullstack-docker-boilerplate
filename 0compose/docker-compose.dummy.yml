@@ -8,13 +8,6 @@ services:
     volumes:
       - ./data/mongo:/data/db
 
-  redis:
-    image: redis:3.2.0
-    networks:
-      - back-tier
-    volumes:
-      - ./data/redis:/data
-
   server:
     build:
       context: ../source/server
@@ -31,10 +24,7 @@ services:
       - 4000:4000
     networks:
       - back-tier
-
-  client:
-    image: ubuntu:14.04
-    command: /bin/echo 'Hello world'
+    command: "npm run dummy-data"
 
 networks:
   back-tier:

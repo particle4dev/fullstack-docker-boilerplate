@@ -45,12 +45,18 @@ export function connect(uri, options, cb) {
 
 // Mongo
 let primaryData = null;
+const {
+  TodosModel,
+} = require('../models');
+
 export function connectPrimaryData(uri, options) {
   if (!primaryData) {
     const db = nconf.get('db:mongo');
     uri = db ? db.uri : uri;
     options = db ? db.options : options;
     primaryData = connect(uri, options, () => {});
+
+    TodosModel(primaryData);
   }
   return primaryData;
 }

@@ -23,3 +23,6 @@ logs:
 
 exec:
 	./0compose/docker-compose-exec.sh $(filter-out $@,$(MAKECMDGOALS)) bash
+
+dummy-data:
+	docker-compose -f ./0compose/docker-compose.dummy.yml up -d
