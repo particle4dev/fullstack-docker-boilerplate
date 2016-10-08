@@ -31,6 +31,9 @@ services:
       - 4000:4000
     networks:
       - back-tier
+    depends_on:
+      - mongo
+      - redis
 
   client:
     image: ubuntu:14.04
