@@ -36,11 +36,21 @@ services:
       - redis
 
   client:
-    image: ubuntu:14.04
-    command: /bin/echo 'Hello world'
+    build:
+      context: ../source/client
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../source/client/app:/usr/src/app/app
+    ports:
+      - 3000:3000
+    networks:
+      - front-tier
+    command: tail -f /dev/null
 
 networks:
   back-tier:
-  # front-tier:
+  front-tier:
 # volumes:
   # db-data:
