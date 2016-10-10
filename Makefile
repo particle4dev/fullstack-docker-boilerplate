@@ -9,12 +9,15 @@ build:
 	docker build --tag=${DOCKER_IMAGE}:${VERSION} .
 
 dev:
-	docker-compose -f ./0compose/docker-compose.dev.yml up -d
+	docker-compose -f ./0compose/docker-compose.dev.yml up -d $(filter-out $@,$(MAKECMDGOALS:start=))
 
 dev-build:
-	docker-compose -f ./0compose/docker-compose.dev.yml up -d --build
+	docker-compose -f ./0compose/docker-compose.dev.yml up -d --build $(filter-out $@,$(MAKECMDGOALS:start=))
 
 clean:
+	rm -rf ./0compose/data/*
+
+rm:
 	docker-compose -f ./0compose/docker-compose.dev.yml stop
 	docker-compose -f ./0compose/docker-compose.dev.yml rm -f
 
