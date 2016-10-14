@@ -19,10 +19,10 @@ function Row({ ...props }) {
   }
   return (
     <li className={ className.join(' ') }>
-      <a className="remove" href="#" onClick={ onRemove }>
+      <a className={ styles.remove } href="#" onClick={ onRemove }>
         <i className="fa fa-trash-o"></i>
       </a>
-      <a className="completed" href="#" onClick={ onUpdate }>
+      <a className={ styles.completed } href="#" onClick={ onUpdate }>
         <i className="fa fa-check"></i>
       </a>
       { title }

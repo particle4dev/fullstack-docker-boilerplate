@@ -47,7 +47,7 @@ services:
       - 3000:3000
     networks:
       - front-tier
-    command: tail -f /dev/null
+    command: bash -c "npm run build:dll && npm run start"
 
 networks:
   back-tier:
