@@ -16,19 +16,37 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  OPEN_NEWTASK,
+  CREATE_NEWTASK,
+  REMOVE_TASK,
+  UPDATE_TASK
 } from './constants';
 
-/**
- * Changes the input field of the form
- *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(name) {
+export function openNewTask(value) {
   return {
-    type: CHANGE_USERNAME,
-    name,
+    type: OPEN_NEWTASK,
+    value: !value,
+  };
+}
+
+export function createNewTask(title) {
+  return {
+    type: CREATE_NEWTASK,
+    title,
+  };
+}
+
+export function removeTask(_id) {
+  return {
+    type: REMOVE_TASK,
+    _id,
+  };
+}
+
+export function updateTask(_id, done) {
+  return {
+    type: UPDATE_TASK,
+    _id,
+    done,
   };
 }

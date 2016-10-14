@@ -1,5 +1,5 @@
 /*
- * HomeConstants
+ * AppConstants
  * Each action has a corresponding type, which the reducer knows and picks up on.
  * To avoid weird typos between the reducer and the actions, we save them as
  * constants here. We prefix them with 'yourproject/YourComponent' so we avoid
@@ -9,4 +9,10 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const LOAD_REPOS = 'boilerplate/HomePage/LOAD_REPOS';
+export const LOAD_REPOS_SUCCESS = 'boilerplate/HomePage/LOAD_REPOS_SUCCESS';
+export const LOAD_REPOS_ERROR = 'boilerplate/HomePage/LOAD_REPOS_ERROR';
+export const OPEN_NEWTASK = 'boilerplate/HomePage/OPEN_NEWTASK';
+export const CREATE_NEWTASK = 'boilerplate/HomePage/CREATE_NEWTASK';
+export const REMOVE_TASK = 'boilerplate/HomePage/REMOVE_TASK';
+export const UPDATE_TASK = 'boilerplate/HomePage/UPDATE_TASK';

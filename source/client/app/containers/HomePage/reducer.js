@@ -1,5 +1,5 @@
 /*
- * HomeReducer
+ * AppReducer
  *
  * The reducer takes care of our data. Using actions, we can change our
  * application state.
@@ -11,25 +11,84 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  LOAD_REPOS_SUCCESS,
+  LOAD_REPOS,
+  LOAD_REPOS_ERROR,
+  OPEN_NEWTASK,
+  CREATE_NEWTASK,
+  REMOVE_TASK,
+  UPDATE_TASK
 } from './constants';
-import { fromJS } from 'immutable';
+import { fromJS, List, Record } from 'immutable';
 
 // The initial state of the App
-const initialState = fromJS({
-  username: '',
+export const TasksState = new Record({
+  filter: '',
+  loading: false,
+  error: false,
+  newTaskUIState: false,
+  list: new List([
+    {_id: 1, title: 'Go to the bank', done: true},
+    {_id: 2, title: 'Buy food', done: false},
+    {_id: 3, title: 'Make dinner', done: true},
+    {_id: 4, title: 'Clean the house', done: false},
+    {_id: 5, title: 'Pick up the kids', done: true}
+  ])
 });
+const initialState = new TasksState();
+// const initialState = fromJS({
+//   loading: false,
+//   error: false,
+//   currentUser: false,
+//   userData: fromJS({
+//     repositories: false,
+//   }),
+// });
 
-function homeReducer(state = initialState, action) {
+function appReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
+    // case LOAD_REPOS:
+    //   return state
+    //     .set('loading', true)
+    //     .set('error', false)
+    //     .setIn(['userData', 'repositories'], false);
+    // case LOAD_REPOS_SUCCESS:
+    //   return state
+    //     .setIn(['userData', 'repositories'], action.repos)
+    //     .set('loading', false)
+    //     .set('currentUser', action.username);
+    // case LOAD_REPOS_ERROR:
+    //   return state
+    //     .set('error', action.error)
+    //     .set('loading', false);
+    case CREATE_NEWTASK:
+      return state.set('list', state.list.unshift({
+        _id: state.get('list').size + 1,
+        title: action.title,
+        done: false
+      }));
+    
+    case REMOVE_TASK:
+      return state.set('list', state.list.filter(task => {
+        return task._id !== action._id;
+      }));
 
-      // Delete prefixed '@' from the github username
+    case UPDATE_TASK:
+      return state.set('list', state.list.map(task => {
+        return task._id === action._id ? {
+          _id: task._id,
+          title: task.title,
+          done: action.done
+        } : task;
+      }));
+
+    case OPEN_NEWTASK:
       return state
-        .set('username', action.name.replace(/@/gi, ''));
+        .set('newTaskUIState', action.value);
+
     default:
       return state;
   }
 }
 
-export default homeReducer;
+export default appReducer;
