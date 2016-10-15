@@ -10,6 +10,8 @@
  *   return state.set('yourStateVariable', true);
  */
 import { fromJS, List, Record } from 'immutable';
+import { handleActions } from 'redux-actions';
+
 import { guid } from '../../utils/guid';
 import {
   LOAD_REPOS_SUCCESS,
@@ -45,6 +47,7 @@ const initialState = new TasksState();
 //   }),
 // });
 
+/*
 function appReducer(state = initialState, action) {
   switch (action.type) {
     // case LOAD_REPOS:
@@ -61,34 +64,33 @@ function appReducer(state = initialState, action) {
     //   return state
     //     .set('error', action.error)
     //     .set('loading', false);
-    case CREATE_NEWTASK:
-      return state.set('list', state.list.unshift({
-        _id: guid(),
-        title: action.title,
-        done: false
-      }));
-    
-    case REMOVE_TASK:
-      return state.set('list', state.list.filter(task => {
-        return task._id !== action._id;
-      }));
-
-    case UPDATE_TASK:
-      return state.set('list', state.list.map(task => {
-        return task._id === action._id ? {
-          _id: task._id,
-          title: task.title,
-          done: action.done
-        } : task;
-      }));
-
-    case OPEN_NEWTASK:
-      return state
-        .set('newTaskUIState', action.value);
-
-    default:
-      return state;
   }
 }
-
-export default appReducer;
+*/
+const homeReducer = handleActions({
+  [OPEN_NEWTASK]: (state, { payload: { value } }) => {
+    return state.set('newTaskUIState', value); 
+  },
+  [CREATE_NEWTASK]: (state, { payload: { title } }) => {
+    return state.set('list', state.list.unshift({
+      _id: guid(),
+      title: title,
+      done: false
+    }));
+  },
+  [REMOVE_TASK]: (state, { payload: { _id } }) => {
+    return state.set('list', state.list.filter(task => {
+      return task._id !== _id;
+    }));
+  },
+  [UPDATE_TASK]: (state, { payload: { _id, done } }) => {
+    return state.set('list', state.list.map(task => {
+      return task._id === _id ? {
+        _id,
+        title: task.title,
+        done
+      } : task;
+    }));
+  },
+}, initialState);
+export default homeReducer;

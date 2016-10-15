@@ -14,6 +14,7 @@
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
+import { createAction } from 'redux-actions';
 
 import {
   OPEN_NEWTASK,
@@ -22,31 +23,18 @@ import {
   UPDATE_TASK
 } from './constants';
 
-export function openNewTask(value) {
-  return {
-    type: OPEN_NEWTASK,
-    value: !value,
-  };
-}
+export const openNewTask = createAction(OPEN_NEWTASK, (value) => ({
+  value: !value
+}));
 
-export function createNewTask(title) {
-  return {
-    type: CREATE_NEWTASK,
-    title,
-  };
-}
+export const createNewTask = createAction(CREATE_NEWTASK, (title) => ({
+  title
+}));
 
-export function removeTask(_id) {
-  return {
-    type: REMOVE_TASK,
-    _id,
-  };
-}
+export const removeTask = createAction(REMOVE_TASK, (_id) => ({
+  _id
+}));
 
-export function updateTask(_id, done) {
-  return {
-    type: UPDATE_TASK,
-    _id,
-    done,
-  };
-}
+export const updateTask = createAction(UPDATE_TASK, (_id, done) => ({
+  _id, done
+}));

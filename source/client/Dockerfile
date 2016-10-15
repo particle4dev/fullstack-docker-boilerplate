@@ -1,6 +1,9 @@
 FROM node:6.7.0
 MAINTAINER Hoang Nam "particle4dev@gmail.com"
 
+RUN apt-get update
+RUN apt-get install -y xvfb
+
 # ENV KARMA_BROWSER PhantomJS
 
 # use changes to package.json to force Docker not to use the cache
