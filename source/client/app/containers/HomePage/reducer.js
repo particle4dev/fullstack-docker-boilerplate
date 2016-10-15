@@ -9,7 +9,8 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-
+import { fromJS, List, Record } from 'immutable';
+import { guid } from '../../utils/guid';
 import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
@@ -19,7 +20,6 @@ import {
   REMOVE_TASK,
   UPDATE_TASK
 } from './constants';
-import { fromJS, List, Record } from 'immutable';
 
 // The initial state of the App
 export const TasksState = new Record({
@@ -28,11 +28,11 @@ export const TasksState = new Record({
   error: false,
   newTaskUIState: false,
   list: new List([
-    {_id: 1, title: 'Go to the bank', done: true},
-    {_id: 2, title: 'Buy food', done: false},
-    {_id: 3, title: 'Make dinner', done: true},
-    {_id: 4, title: 'Clean the house', done: false},
-    {_id: 5, title: 'Pick up the kids', done: true}
+    {_id: guid(), title: 'Go to the bank', done: true},
+    {_id: guid(), title: 'Buy food', done: false},
+    {_id: guid(), title: 'Make dinner', done: true},
+    {_id: guid(), title: 'Clean the house', done: false},
+    {_id: guid(), title: 'Pick up the kids', done: true}
   ])
 });
 const initialState = new TasksState();
@@ -63,7 +63,7 @@ function appReducer(state = initialState, action) {
     //     .set('loading', false);
     case CREATE_NEWTASK:
       return state.set('list', state.list.unshift({
-        _id: state.get('list').size + 1,
+        _id: guid(),
         title: action.title,
         done: false
       }));
