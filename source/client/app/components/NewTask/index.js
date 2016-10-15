@@ -50,7 +50,7 @@ class NewTask extends Component {
     }
     return (
       <div className={ className.join(' ') }>
-        <a className={ styles.addNew } href="#" onClick={ this.newTask } >
+        <a className={ styles.addNew } href="javascript:void(0)" onClick={ this.newTask } >
           <i className="fa fa-plus"></i>
         </a>
         <input ref="todoText" placeholder="New task" onKeyPress={this.handleKeyPress} />

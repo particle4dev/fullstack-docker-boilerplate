@@ -38,7 +38,7 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
     const { list, loading, error, newTaskUIState, openNewTask, createNewTask, removeTask, updateTask } = this.props;
     let taskItems = list.map((task, index) => {
       return (
-        <Row key={index} _id={task._id} title={task.title} done={task.done} onRemove={removeTask} onUpdate={updateTask}/>
+        <Row key={index} _id={task._id} title={task.title} done={task.done} onRemove={removeTask} onUpdate={updateTask}></Row>
       );
     });
     return (
@@ -58,7 +58,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     removeTask: (value) => dispatch(removeTask(value)),
     updateTask: (_id, done) => dispatch(updateTask(_id, done)),
-    createNewTask: (evt, value) => dispatch(createNewTask(value)),
+    createNewTask: (evt, value) => {evt.preventDefault(); dispatch(createNewTask(value)) },
     openNewTask: (value) => dispatch(openNewTask(value)),
     dispatch,
   };
