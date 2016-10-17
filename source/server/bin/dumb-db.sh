@@ -38,7 +38,7 @@ function connect (uri, options, cb) {
 
   // If the connection throws an error
   connect.on('error', function (err) {
-    logger.crit('Failed to connect to DB ' + uri + ' on startup ' + err.message);
+    logger.error('Failed to connect to DB ' + uri + ' on startup ' + err.message);
   });
 
   // When the connection is disconnected

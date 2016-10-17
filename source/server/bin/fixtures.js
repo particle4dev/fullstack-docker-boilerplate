@@ -23,7 +23,7 @@ export default async function fixtures(connection) {
       process.exit(0);
     })();
   } catch (e) {
-    logger.crit(e.message);
+    logger.error(e.message);
     process.exit(1);
   }
 }
