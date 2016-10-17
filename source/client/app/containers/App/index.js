@@ -12,7 +12,7 @@
  */
 
 import React from 'react';
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import styles from './styles.css';
 
 export default class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -23,10 +23,12 @@ export default class App extends React.Component { // eslint-disable-line react/
 
   render() {
     return (
-      <div className={styles.container}>
-        <p>Simple todo-"app". Try hover and drag todo items.</p>
-        {React.Children.toArray(this.props.children)}
-      </div>
+      <MuiThemeProvider>
+        <div className={styles.container}>
+          <p>Simple todo-"app". Try hover and drag todo items.</p>
+          {React.Children.toArray(this.props.children)}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
