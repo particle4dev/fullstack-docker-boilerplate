@@ -9,9 +9,9 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'boilerplate/HomePage/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/HomePage/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/HomePage/LOAD_REPOS_ERROR';
+export const LOAD_TASKS = 'boilerplate/HomePage/LOAD_TASKS';
+export const LOAD_TASKS_SUCCESS = 'boilerplate/HomePage/LOAD_TASKS_SUCCESS';
+export const LOAD_TASKS_ERROR = 'boilerplate/HomePage/LOAD_TASKS_ERROR';
 export const OPEN_NEWTASK = 'boilerplate/HomePage/OPEN_NEWTASK';
 export const CREATE_NEWTASK = 'boilerplate/HomePage/CREATE_NEWTASK';
 export const REMOVE_TASK = 'boilerplate/HomePage/REMOVE_TASK';

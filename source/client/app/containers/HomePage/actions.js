@@ -17,6 +17,9 @@
 import { createAction } from 'redux-actions';
 
 import {
+  LOAD_TASKS,
+  LOAD_TASKS_SUCCESS,
+  LOAD_TASKS_ERROR,
   OPEN_NEWTASK,
   CREATE_NEWTASK,
   REMOVE_TASK,
@@ -37,4 +40,14 @@ export const removeTask = createAction(REMOVE_TASK, (_id) => ({
 
 export const updateTask = createAction(UPDATE_TASK, (_id, done) => ({
   _id, done
+}));
+
+export const loadTasks = createAction(LOAD_TASKS, () => ({}));
+
+export const tasksLoaded = createAction(LOAD_TASKS_SUCCESS, (list) => ({
+  list
+}));
+
+export const tasksLoadingError = createAction(LOAD_TASKS_ERROR, (error) => ({
+  error
 }));
