@@ -21,7 +21,7 @@ export default function () {
     return redis;
   }
   catch (e) {
-    logger.crit(e);
+    logger.error(e.message);
   }
 }
 

@@ -17,6 +17,9 @@ dev-build:
 clean:
 	rm -rf ./0compose/data/*
 
+stop:
+	docker-compose -f ./0compose/docker-compose.dev.yml stop
+
 rm:
 	docker-compose -f ./0compose/docker-compose.dev.yml stop
 	docker-compose -f ./0compose/docker-compose.dev.yml rm -f

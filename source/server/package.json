@@ -31,6 +31,7 @@
     "tape": "^4.6.0"
   },
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "mongoose": "^4.5.8",
     "mongoose-timestamp": "^0.6.0",
