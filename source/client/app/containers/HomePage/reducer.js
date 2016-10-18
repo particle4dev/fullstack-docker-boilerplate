@@ -60,7 +60,6 @@ const homeReducer = handleActions({
     return state.set('loading', true);
   },
   [REMOVE_TASK_SUCCESS]: (state, { payload: { _id } }) => {
-    console.log(_id);
     return state
     .set('loading', false)
     .set('list', state.list.filter(task => {
@@ -68,13 +67,14 @@ const homeReducer = handleActions({
     }));
   },
   [UPDATE_TASK]: (state, { payload: { _id, done } }) => {
-    return state.set('list', state.list.map(task => {
-      return task._id === _id ? {
-        _id,
-        title: task.title,
-        done
-      } : task;
-    }));
+    return state.set('loading', true);
+    // return state.set('list', state.list.map(task => {
+    //   return task._id === _id ? {
+    //     _id,
+    //     title: task.title,
+    //     done
+    //   } : task;
+    // }));
   },
 }, initialState);
 export default homeReducer;

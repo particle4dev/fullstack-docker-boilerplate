@@ -12,7 +12,8 @@ import {
 import {
   LOAD_TASKS,
   CREATE_NEWTASK,
-  REMOVE_TASK
+  REMOVE_TASK,
+  UPDATE_TASK
 } from './constants';
 
 export function* getTasks() {
@@ -78,9 +79,39 @@ export function* watchDelteTask() {
   yield takeEvery(REMOVE_TASK, deleteTask);
 }
 
+export function* updateTask({payload: { _id, done }}) {
+  // Select username from store
+  const requestURL = `http://localhost:4000/todos/${_id}`;
+  const {data: { success }} = yield call(request, requestURL, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      done
+    })
+  });
+  if (success) {
+    yield put(removeTaskSuccess({
+      _id,
+      done
+    }));
+  }
+  // else {
+    // yield put(removeTaskError({}));
+  // }
+}
+
+// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+export function* watchUpdateTask() {
+  yield takeEvery(UPDATE_TASK, deleteTask);
+}
+
 // Your sagas for this container
 export default [
   watchGetTasksAsync,
   watchInsertNewTask,
-  watchDelteTask
+  watchDelteTask,
+  watchUpdateTask
 ];

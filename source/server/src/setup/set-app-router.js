@@ -60,6 +60,11 @@ export default function setAppRouter(app) {
     });
   });
 
+  app.put('/todos/:id', async (req, res) => {
+    await wait(3000);
+    console.log(1234);
+  });
+
   // log errors
   function logErrors(err, req, res, next) {
     logger.error(err.message);

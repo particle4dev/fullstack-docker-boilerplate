@@ -24,3 +24,5 @@ export const REMOVE_TASK_SUCCESS = 'boilerplate/HomePage/REMOVE_TASK_SUCCESS';
 export const REMOVE_TASK_ERROR = 'boilerplate/HomePage/REMOVE_TASK_ERROR';
 
 export const UPDATE_TASK = 'boilerplate/HomePage/UPDATE_TASK';
+export const UPDATE_TASK_SUCCESS = 'boilerplate/HomePage/UPDATE_TASK_SUCCESS';
+export const UPDATE_TASK_ERROR = 'boilerplate/HomePage/UPDATE_TASK_ERROR';
