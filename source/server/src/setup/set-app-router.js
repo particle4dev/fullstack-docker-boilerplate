@@ -1,7 +1,7 @@
 import nconf from 'nconf';
 import logger from '../logger';
 import { TodosModel } from '../models';
-
+import { toObjectId, isObjectId } from '../utils/to-objectid';
 const env = nconf.get('NODE_ENV') || 'development';
 
 export default function setAppRouter(app) {
@@ -25,13 +25,39 @@ export default function setAppRouter(app) {
   app.get('/todos', async (req, res) => {
     await wait(5000);
     const t = TodosModel();
-    return res.json(await(t.find({})));
+    return res.json(await(t.find({}).sort({
+      updatedAt: -1
+    })));
   });
 
   app.post('/todos', async (req, res) => {
-    await wait(5000);
-    const t = TodosModel();
-    return res.json(await(t.find({})));
+    await wait(3000);
+    const { title } = req.body;
+    const data = await TodosModel().create({
+      title,
+      done: false
+    });
+    return res.json({
+      data,
+      meta: {}
+    });
+  });
+
+  app.delete('/todos/:id', async (req, res) => {
+    await wait(3000);
+    let { id } = req.params;
+    if(typeof id === 'string') {
+      id = toObjectId(id);
+    }
+    const i = await TodosModel().remove({ _id: id });
+    if(i && i.result && i.result.ok === 1) {
+      return res.json({
+        success: true
+      });
+    }
+    return res.json({
+      success: false
+    });
   });
 
   // log errors

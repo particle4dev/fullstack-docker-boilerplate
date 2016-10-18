@@ -12,7 +12,15 @@
 export const LOAD_TASKS = 'boilerplate/HomePage/LOAD_TASKS';
 export const LOAD_TASKS_SUCCESS = 'boilerplate/HomePage/LOAD_TASKS_SUCCESS';
 export const LOAD_TASKS_ERROR = 'boilerplate/HomePage/LOAD_TASKS_ERROR';
+
 export const OPEN_NEWTASK = 'boilerplate/HomePage/OPEN_NEWTASK';
+
 export const CREATE_NEWTASK = 'boilerplate/HomePage/CREATE_NEWTASK';
+export const CREATE_NEWTASK_SUCCESS = 'boilerplate/HomePage/CREATE_NEWTASK_SUCCESS';
+export const CREATE_NEWTASK_ERROR = 'boilerplate/HomePage/CREATE_NEWTASK_ERROR';
+
 export const REMOVE_TASK = 'boilerplate/HomePage/REMOVE_TASK';
+export const REMOVE_TASK_SUCCESS = 'boilerplate/HomePage/REMOVE_TASK_SUCCESS';
+export const REMOVE_TASK_ERROR = 'boilerplate/HomePage/REMOVE_TASK_ERROR';
+
 export const UPDATE_TASK = 'boilerplate/HomePage/UPDATE_TASK';

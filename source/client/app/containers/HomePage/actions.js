@@ -22,7 +22,11 @@ import {
   LOAD_TASKS_ERROR,
   OPEN_NEWTASK,
   CREATE_NEWTASK,
+  CREATE_NEWTASK_SUCCESS,
+  CREATE_NEWTASK_ERROR,
   REMOVE_TASK,
+  REMOVE_TASK_SUCCESS,
+  REMOVE_TASK_ERROR,
   UPDATE_TASK
 } from './constants';
 
@@ -34,8 +38,24 @@ export const createNewTask = createAction(CREATE_NEWTASK, (title) => ({
   title
 }));
 
+export const createNewTaskSuccess = createAction(CREATE_NEWTASK_SUCCESS, ({ data }) => ({
+  data
+}));
+
+export const createNewTaskError = createAction(CREATE_NEWTASK_ERROR, (error) => ({
+  error
+}));
+
 export const removeTask = createAction(REMOVE_TASK, (_id) => ({
   _id
+}));
+
+export const removeTaskSuccess = createAction(REMOVE_TASK_SUCCESS, ({ _id }) => ({
+  _id
+}));
+
+export const removeTaskError = createAction(REMOVE_TASK_ERROR, (error) => ({
+  error
 }));
 
 export const updateTask = createAction(UPDATE_TASK, (_id, done) => ({

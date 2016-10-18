@@ -3,10 +3,16 @@ import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import request from 'utils/request';
 import {
   tasksLoaded,
-  tasksLoadingError
+  tasksLoadingError,
+  createNewTaskSuccess,
+  createNewTaskError,
+  removeTaskSuccess,
+  removeTaskError
 } from './actions';
 import {
-  LOAD_TASKS
+  LOAD_TASKS,
+  CREATE_NEWTASK,
+  REMOVE_TASK
 } from './constants';
 
 export function* getTasks() {
@@ -22,11 +28,59 @@ export function* getTasks() {
 }
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-export function* watchIncrementAsync() {
+export function* watchGetTasksAsync() {
   yield takeEvery(LOAD_TASKS, getTasks)
+}
+
+export function* insertNewTask({payload: { title }}) {
+  // Select username from store
+  const requestURL = `http://localhost:4000/todos`;
+  const repos = yield call(request, requestURL, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title
+    })
+  });
+  if (!repos.err) {
+    yield put(createNewTaskSuccess(repos.data));
+  } else {
+    yield put(createNewTaskError(repos.err));
+  }
+}
+
+// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+export function* watchInsertNewTask() {
+  yield takeEvery(CREATE_NEWTASK, insertNewTask);
+}
+
+export function* deleteTask({payload: { _id }}) {
+  // Select username from store
+  const requestURL = `http://localhost:4000/todos/${_id}`;
+  const {data: { success }} = yield call(request, requestURL, {
+    method: 'DELETE'
+  });
+  if (success) {
+    yield put(removeTaskSuccess({
+      _id
+    }));
+  }
+  // else {
+    // yield put(removeTaskError({}));
+  // }
+}
+
+// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+export function* watchDelteTask() {
+  yield takeEvery(REMOVE_TASK, deleteTask);
 }
 
 // Your sagas for this container
 export default [
-  watchIncrementAsync,
+  watchGetTasksAsync,
+  watchInsertNewTask,
+  watchDelteTask
 ];

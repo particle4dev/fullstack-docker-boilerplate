@@ -19,7 +19,11 @@ import {
   LOAD_TASKS_ERROR,
   OPEN_NEWTASK,
   CREATE_NEWTASK,
+  CREATE_NEWTASK_SUCCESS,
+  CREATE_NEWTASK_ERROR,
   REMOVE_TASK,
+  REMOVE_TASK_SUCCESS,
+  REMOVE_TASK_ERROR,
   UPDATE_TASK
 } from './constants';
 
@@ -45,14 +49,21 @@ const homeReducer = handleActions({
     return state.set('newTaskUIState', value); 
   },
   [CREATE_NEWTASK]: (state, { payload: { title } }) => {
-    return state.set('list', state.list.unshift({
-      _id: guid(),
-      title: title,
-      done: false
-    }));
+    return state.set('loading', true);
+  },
+  [CREATE_NEWTASK_SUCCESS]: (state, { payload: { data } }) => {
+    return state
+    .set('loading', false)
+    .set('list', state.list.unshift(data));
   },
   [REMOVE_TASK]: (state, { payload: { _id } }) => {
-    return state.set('list', state.list.filter(task => {
+    return state.set('loading', true);
+  },
+  [REMOVE_TASK_SUCCESS]: (state, { payload: { _id } }) => {
+    console.log(_id);
+    return state
+    .set('loading', false)
+    .set('list', state.list.filter(task => {
       return task._id !== _id;
     }));
   },
