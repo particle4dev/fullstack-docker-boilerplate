@@ -1,3 +1,6 @@
 [submodule "source/server"]
 	path = source/server
 	url = git@github.com:particle4dev/node-boilerplate.git
+[submodule "source/client"]
+	path = source/client
+	url = git@github.com:particle4dev/redux-boilerplate.git
