@@ -3,6 +3,8 @@ PRIVATE_REGISTRY_URL=ro.lan:5000
 DOCKER_IMAGE=particle4dev/app
 VERSION=0.1
 
+.PHONY: start build dev dev-build stop rm logs exec cordova database
+
 start: dev
 
 build:
@@ -13,9 +15,6 @@ dev:
 
 dev-build:
 	docker-compose -f ./0compose/docker-compose.dev.yml up -d --build $(filter-out $@,$(MAKECMDGOALS:start=))
-
-clean:
-	rm -rf ./0compose/data/*
 
 stop:
 	docker-compose -f ./0compose/docker-compose.dev.yml stop
@@ -30,8 +29,8 @@ logs:
 exec:
 	./0compose/docker-compose-exec.sh $(filter-out $@,$(MAKECMDGOALS)) bash
 
-dummy-data:
-	docker-compose -f ./0compose/docker-compose.dummy.yml up -d
-
 cordova:
 	./0compose/cordova.sh $(filter-out $@,$(MAKECMDGOALS))
+
+database:
+	./0compose/database.sh $(filter-out $@,$(MAKECMDGOALS))

@@ -4,7 +4,7 @@
 
 source ./0compose/utils.sh
 
-# NAMEDOCKER="particle4dev\/v2-media-cityme"
+CORDOVA_VERSION="6.3.1"
 
 # Check for Cordova
 if type_exists 'cordova'; then
