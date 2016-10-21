@@ -32,3 +32,6 @@ exec:
 
 dummy-data:
 	docker-compose -f ./0compose/docker-compose.dummy.yml up -d
+
+cordova:
+	./0compose/cordova.sh $(filter-out $@,$(MAKECMDGOALS))
