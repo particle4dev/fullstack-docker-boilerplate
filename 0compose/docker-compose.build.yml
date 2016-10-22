@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+
+  server:
+    build:
+      context: ../source/server
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ../source/server/bin:/usr/src/app/bin
+      - ../source/server/src:/usr/src/app/src
+      - ../source/server/logs:/usr/src/app/logs
+      - ../source/server/build:/usr/src/app/build
+      - ../source/server/config:/usr/src/app/config
+      - ../source/server/private:/usr/src/app/private
+      - ../source/server/package.json:/usr/src/app/package.json
+      - ../source/server/nodemon.json:/usr/src/app/nodemon.json
+      - ../source/server/.babelrc:/usr/src/app/.babelrc
+      - ../source/server/.eslintignore:/usr/src/app/.eslintignore
+      - ../source/server/.eslintrc:/usr/src/app/.eslintrc
+    ports:
+      - 4000:4000
+    networks:
+      - back-tier
+    command: bash -c "npm run build"
+
+networks:
+  back-tier:
+  # front-tier:
+# volumes:
+  # db-data:

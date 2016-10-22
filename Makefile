@@ -8,7 +8,7 @@ VERSION=0.1
 start: dev
 
 build:
-	docker build --tag=${DOCKER_IMAGE}:${VERSION} .
+	./0compose/build.sh $(filter-out $@,$(MAKECMDGOALS))
 
 dev:
 	docker-compose -f ./0compose/docker-compose.dev.yml up -d $(filter-out $@,$(MAKECMDGOALS:start=))
@@ -22,6 +22,9 @@ stop:
 rm:
 	docker-compose -f ./0compose/docker-compose.dev.yml stop
 	docker-compose -f ./0compose/docker-compose.dev.yml rm -f
+
+production:
+	docker-compose -f ./0compose/docker-compose.pro.yml up -d --build
 
 logs:
 	docker-compose -f ./0compose/docker-compose.dev.yml logs -f $(filter-out $@,$(MAKECMDGOALS))
