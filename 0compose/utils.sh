@@ -63,3 +63,31 @@ if [[ "${OSTYPE}" == $1* ]]; then
 fi
 return 1
 }
+
+#
+# My helpers function
+#
+
+checkIfCordovaExists () {
+  # Check for Cordova
+  if ! type_exists 'cordova'; then
+    e_error "Cordova should be installed. It isn't. Aborting."
+    exit 1
+  fi
+}
+
+checkIfCordovaDontExists () {
+  # Check for Cordova
+  if type_exists 'cordova'; then
+    e_error "Cordova is installed"
+    exit 1
+  fi
+}
+
+checkIfNpmExists () {
+  # Check for Npm
+  if ! type_exists 'npm'; then
+    e_error "NPM should be installed. It isn't. Aborting."
+    exit 1
+  fi
+}

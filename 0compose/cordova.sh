@@ -3,36 +3,56 @@
 # https://github.com/tj/git-extras.git
 
 source ./0compose/utils.sh
+source ./0compose/constant.sh
 
-CORDOVA_VERSION="6.3.1"
+VERSION="6.3.1"
 
-# Check for Cordova
-if type_exists 'cordova'; then
-  e_success "Cordova good to go"
-else
-  e_error "Cordova should be installed. It isn't. Aborting."
-  exit 1
-fi
+getCordovaCurrentVersion () {
+  checkIfCordovaExists
+  VERSION=`cordova --version`
+}
+
+installCordova () {
+  checkIfNpmExists
+  checkIfCordovaDontExists
+  npm install -g cordova@${VERSION}
+}
+
+uninstallCordova () {
+  checkIfNpmExists
+  checkIfCordovaExists
+  npm uninstall -g cordova@${VERSION}
+}
+
+buildCordova () {
+  checkIfCordovaExists
+  echo "build not implement yet"
+}
+
+devCordova () {
+  checkIfCordovaExists
+  echo "dev not implement yet"
+}
 
 case "$1" in
   install)
-    echo "install not implement yet"
+    installCordova
     ;;
 
   uninstall)
-    echo "uninstall not implement yet"
+    uninstallCordova
     ;;
 
   build)
-    echo "uninstall not implement yet"
+    buildCordova
     ;;
 
   dev)
-    echo "uninstall not implement yet"
+    devCordova
     ;;
 
   *)
-    echo $"Usage: $0 {install|uninstall}"
+    echo $"Usage: $0 {install|uninstall|build|dev}"
     exit 1
 
 esac
