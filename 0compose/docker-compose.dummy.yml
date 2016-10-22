@@ -24,7 +24,7 @@ services:
       - 4000:4000
     networks:
       - back-tier
-    command: "npm run dummy-data"
+    command: "./bin/dumb-db.sh"
 
 networks:
   back-tier:
