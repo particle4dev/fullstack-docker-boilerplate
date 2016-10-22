@@ -49,6 +49,8 @@ services:
       - NODE_ENV=development
     volumes:
       - ../source/client/app:/usr/src/app/app
+      - ../source/client/build:/usr/src/app/build
+      - ../source/client/package.json:/usr/src/app/package.json
     ports:
       - 3000:3000
     networks:

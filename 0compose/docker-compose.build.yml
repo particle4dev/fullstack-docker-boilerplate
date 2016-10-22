@@ -26,8 +26,24 @@ services:
       - back-tier
     command: bash -c "npm run build"
 
+  client:
+    build:
+      context: ../source/client
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ../source/client/app:/usr/src/app/app
+      - ../source/client/build:/usr/src/app/build
+      - ../source/client/package.json:/usr/src/app/package.json
+    ports:
+      - 3000:3000
+    networks:
+      - front-tier
+    command: bash -c "npm run build"
+
 networks:
   back-tier:
-  # front-tier:
+  front-tier:
 # volumes:
   # db-data:

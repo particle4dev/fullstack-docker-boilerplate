@@ -21,6 +21,8 @@ services:
       dockerfile: Dockerfile.pro
     environment:
       - NODE_ENV=production
+      - MONGO_URL=mongodb://mongo/tests
+      - REDIS_URL=redis://redis:6379
     ports:
       - 4000:4000
     networks:

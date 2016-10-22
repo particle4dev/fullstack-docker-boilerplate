@@ -11,7 +11,9 @@ buildServer () {
 }
 
 buildClient () {
-  echo "buildClient not implement yet"
+  e_arrow "build client"
+  docker-compose -f ./0compose/docker-compose.build.yml up -d client
+  e_success "done"
 }
 
 case "$1" in
