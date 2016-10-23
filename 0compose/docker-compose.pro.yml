@@ -33,8 +33,20 @@ services:
       - mongo
       - redis
 
+  client:
+    build:
+      context: ../source/client
+      dockerfile: Dockerfile.pro
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 80:80
+    networks:
+      - front-tier
+    # command: bash -c "tail -f /dev/null"
+
 networks:
   back-tier:
-  # front-tier:
+  front-tier:
 # volumes:
   # db-data:
