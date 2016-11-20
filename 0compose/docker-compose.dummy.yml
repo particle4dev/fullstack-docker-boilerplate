@@ -1,17 +1,8 @@
 version: "2"
 
 services:
-  mongo:
-    image: mongo:3.2
-    networks:
-      - back-tier
-    volumes:
-      - ./data/mongo:/data/db
 
   server:
-    build:
-      context: ../source/server
-      dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
     volumes:
@@ -20,14 +11,4 @@ services:
       - ../source/server/logs:/usr/src/app/logs
       - ../source/server/config:/usr/src/app/config
       - ../source/server/private:/usr/src/app/private
-    ports:
-      - 4000:4000
-    networks:
-      - back-tier
     command: "./bin/dumb-db.sh"
-
-networks:
-  back-tier:
-  # front-tier:
-# volumes:
-  # db-data:

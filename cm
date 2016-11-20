@@ -1,0 +1,50 @@
+#!/bin/bash
+
+source ./0compose/utils.sh
+source ./0compose/constant.sh
+
+c=$1
+shift;
+
+case "$c" in
+	run)
+	./0compose/scripts/run.sh "${@}"
+	;;
+
+	build)
+    ./0compose/scripts/build.sh "${@}"
+    ;;
+
+    cordova)
+    ./0compose/scripts/cordova.sh "${@}"
+    ;;
+
+	cleanup)
+    ./0compose/scripts/cleanup.sh "${@}"
+    ;;
+
+    database)
+    ./0compose/scripts/database.sh "${@}"
+    ;;
+
+    production)
+	./0compose/scripts/production.sh "${@}"
+    ;;
+
+	logs)
+    ./0compose/scripts/logs.sh "${@}"
+    ;;
+
+  	exec)
+    ./0compose/scripts/exec.sh "${@}"
+    ;;
+
+	stop)
+    ./0compose/scripts/stop.sh "${@}"
+    ;;
+
+	*)
+	echo $"Usage: $0 {run | build | cleanup | database | production | logs | exec | stop}"
+	exit 1
+
+esac

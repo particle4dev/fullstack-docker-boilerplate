@@ -6,13 +6,13 @@ source ./0compose/constant.sh
 
 buildServer () {
   e_arrow "build server"
-  docker-compose -f ./0compose/docker-compose.build.yml up -d server
+  docker-compose -f ./0compose/docker-compose.yml -f ./0compose/docker-compose.build.yml up -d server
   e_success "done"
 }
 
 buildClient () {
   e_arrow "build client"
-  docker-compose -f ./0compose/docker-compose.build.yml up -d client
+  docker-compose -f ./0compose/docker-compose.yml -f ./0compose/docker-compose.build.yml up -d client
   e_success "done"
 }
 
@@ -26,7 +26,7 @@ case "$1" in
     ;;
 
   *)
-    echo $"Usage: $0 {server|client}"
+    echo $"Usage: $0 { server | client }"
     exit 1
 
 esac

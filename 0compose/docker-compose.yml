@@ -1,0 +1,39 @@
+version: "2"
+
+services:
+  mongo:
+    image: mongo:3.2
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:3.2.0
+    networks:
+      - back-tier
+
+  server:
+    build:
+      context: ../source/server
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    networks:
+      - back-tier
+    depends_on:
+      - mongo
+      - redis
+
+  client:
+    build:
+      context: ../source/client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - front-tier
+
+networks:
+  back-tier:
+  front-tier:
+# volumes:
+  # db-data:

@@ -2,16 +2,10 @@ version: "2"
 
 services:
   mongo:
-    image: mongo:3.2
-    networks:
-      - back-tier
     volumes:
       - ./data/mongo:/data/db
 
   redis:
-    image: redis:3.2.0
-    networks:
-      - back-tier
     volumes:
       - ./data/redis:/data
 
@@ -23,10 +17,6 @@ services:
       - NODE_ENV=production
       - MONGO_URL=mongodb://mongo/tests
       - REDIS_URL=redis://redis:6379
-    ports:
-      - 4000:4000
-    networks:
-      - back-tier
     volumes:
       - ../source/server/logs:/usr/src/app/logs
     depends_on:
@@ -41,12 +31,3 @@ services:
       - NODE_ENV=production
     ports:
       - 80:80
-    networks:
-      - front-tier
-    # command: bash -c "tail -f /dev/null"
-
-networks:
-  back-tier:
-  front-tier:
-# volumes:
-  # db-data:
